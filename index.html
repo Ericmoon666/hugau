@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>胡搞瞎搞</title>
+    <style>
+        /* 你的樣式代碼 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        header {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        nav {
+            margin: 1em 0;
+        }
+        nav a {
+            margin: 0 1em;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+        }
+        .content {
+            width: 80%;
+            max-width: 800px;
+            background-color: white;
+            padding: 2em;
+            margin: 1em 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: auto;
+        }
+        .social-links {
+            margin-top: 1em;
+        }
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 0.5em;
+        }
+        .hidden {
+            display: none;
+        }
+        .blog-title {
+            text-decoration: underline;
+            color: #007BFF;
+        }
+        .blog-title:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>胡搞瞎搞</h1>
+        <nav>
+            <a onclick="showSection('home')">首頁</a>
+            <a onclick="showSection('about')">關於我</a>
+            <a onclick="showSection('blog')">部落格</a>
+            <a onclick="showSection('contact')">聯絡</a>
+        </nav>
+    </header>
+    <div id="home" class="content">
+        <h2>首頁</h2>
+        <p>歡迎來到我的個人網站！</p>
+    </div>
+    <div id="about" class="content hidden">
+        <h2>關於我</h2>
+        <p>這裡是關於我的介紹。</p>
+    </div>
+    <div id="blog" class="content hidden">
+        <h2>部落格</h2>
+        <p><a class="blog-title" onclick="loadArticle('first-post.html')">我的第一篇文章</a></p>
+        <p><a class="blog-title" onclick="loadArticle('second-post.html')">我的第二篇文章</a></p>
+    </div>
+    <div id="contact" class="content hidden">
+        <h2>聯絡我</h2>
+        <form action="https://example.com/form-handler" method="POST">
+            <label for="name">姓名:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">電子郵件:</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <label for="message">訊息:</label><br>
+            <textarea id="message" name="message" required></textarea><br>
+            <button type="submit">送出</button>
+        </form>
+    </div>
+    <div id="article" class="content hidden"></div>
+    <footer>
+        <p>© 2024 胡搞瞎搞</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=100012095592717" target="_blank">Facebook</a>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // 隱藏所有內容部分
+            document.querySelectorAll('.content').forEach(function(section) {
+                section.classList.add('hidden');
+            });
+            // 顯示所選部分
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function loadArticle(articleUrl) {
+            fetch(articleUrl)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('article').innerHTML = data;
+                    showSection('article');
+                })
+                .catch(error => console.error('Error loading article:', error));
+        }
+    </script>
+</body>
+</html>
