@@ -17,7 +17,7 @@
         header {
             width: 100%;
             height: 300px;
-            background-image: url('https://raw.githubusercontent.com/Ericmoon666/hugau/main/274981194_1459474051132434_5140569439435205785_n.jpg'); /* 替換為你的背景圖片 URL */
+            background-image: url('https://raw.githubusercontent.com/Ericmoon666/hugau/main/274981194_1459474051132434_5140569439435205785_n.jpg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -30,12 +30,16 @@
         header h1 {
             font-size: 3em;
             margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         nav {
             margin: 1em 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         nav a {
-            margin: 0 1em;
+            margin: 0.5em;
             text-decoration: none;
             color: white;
             background-color: #007BFF;
@@ -47,7 +51,7 @@
             background-color: #0056b3;
         }
         .content {
-            width: 80%;
+            width: 90%;
             max-width: 800px;
             background-color: white;
             padding: 2em;
@@ -83,7 +87,8 @@
             color: #0056b3;
         }
         .small-img {
-            width: 300px;
+            width: 100%;
+            max-width: 300px;
             height: auto;
         }
         form label {
@@ -109,6 +114,22 @@
         }
         form button:hover {
             background-color: #0056b3;
+        }
+        @media (max-width: 768px) {
+            header {
+                height: 200px;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+            nav a {
+                margin: 0.25em;
+                padding: 0.5em;
+            }
+            .content {
+                width: 95%;
+                padding: 1em;
+            }
         }
     </style>
 </head>
