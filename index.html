@@ -95,15 +95,21 @@
     </div>
     <div id="contact" class="content hidden">
         <h2>聯絡我</h2>
-        <form action="https://formspree.io/f/xeqydper" method="POST">
-            <label for="name">姓名:</label><br>
-            <input type="text" id="name" name="name" required><br>
-            <label for="email">電子郵件:</label><br>
-            <input type="email" id="email" name="email" required><br>
-            <label for="message">訊息:</label><br>
-            <textarea id="message" name="message" required></textarea><br>
-            <button type="submit">送出</button>
-        </form>
+        <form
+  action="https://formspree.io/f/xeqydper"
+  method="POST"
+>
+  <label>
+    Your email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>
     </div>
     <div id="article" class="content hidden"></div>
     <footer>
