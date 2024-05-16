@@ -4,30 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>5月15拍片去</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        .content {
+            width: 90%;
+            max-width: 800px;
+            background-color: white;
+            padding: 2em;
+            margin: 1em 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .small-img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+        .comments {
+            margin-top: 2em;
+        }
+        .comment {
+            border-bottom: 1px solid #ccc;
+            padding: 1em 0;
+        }
+        .comment-form input, .comment-form textarea {
+            width: 100%;
+            padding: 0.5em;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .comment-form button {
+            padding: 0.5em 1em;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .comment-form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h2>5月15拍片去</h2>
-    <p>5月15拍片日，大太陽。希望今天一切順利！</p>
-    <p>拍完之後回到家的補述：大家都很努力，受訪者也很配合。期待成品的產出</p>
-    <img src="https://raw.githubusercontent.com/Ericmoon666/hugau/main/IMG_20240515_140542.jpg" alt="示例圖片" class="small-img">
-    <img src="https://raw.githubusercontent.com/Ericmoon666/hugau/main/IMG_20240515_183153.jpg" alt="示例圖片" class="small-img">
-    <img src="https://raw.githubusercontent.com/Ericmoon666/hugau/main/IMG_20240515_185944.jpg" alt="示例圖片" class="small-img">
+    <div class="content">
+        <h2>5月15拍片去</h2>
+        <p>5月15拍片日，大太陽。希望今天一切順利！</p>
+        <p>拍完之後回到家的補述：大家都很努力，受訪者也很配合。期待成品的產出</p>
+        <img src="https://raw.githubusercontent.com/Ericmoon666/hugau/main/IMG_20240515_140542.jpg" alt="示例圖片" class="small-img">
+        <img src="https://raw.githubusercontent.com/Ericmoon666/hugau/main/IMG_20240515_183153.jpg" alt="示例圖片" class="small-img">
+        <img src="https://raw.githubusercontent.com/Ericmoon666/hugau/main/IMG_20240515_185944.jpg" alt="示例圖片" class="small-img">
+<!-- Comment Section -->
+        <div class="comments" id="comments">
+            <h3>評論</h3>
+            <div id="comment-list"></div>
+            <div class="comment-form">
+                <h4>添加評論</h4>
+                <input type="text" id="comment-name" placeholder="你的名字" required>
+                <textarea id="comment-text" rows="4" placeholder="你的評論" required></textarea>
+                <button onclick="addComment()">提交</button>
+            </div>
+        </div>
+    </div>
 
-    <!-- Disqus Comment Section -->
-    <div id="disqus_thread"></div>
     <script>
-        var disqus_config = function () {
-            this.page.url = 'https://ericmoon666.github.io/first-post.html';  // 替換為你的文章 URL
-            this.page.identifier = 'first-post'; // 替換為你的文章唯一標識符
-        };
+        document.addEventListener('DOMContentLoaded', loadComments);
 
-        (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://ericmoon-1.disqus.com/embed.js';  // 替換為你的 Disqus 短名稱
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
+        function loadComments() {
+            const comments = JSON.parse(localStorage.getItem('comments')) || [];
+            comments.forEach(comment => {
+                addCommentToList(comment.name, comment.text);
+            });
+        }
+
+        function addComment() {
+            const name = document.getElementById('comment-name').value;
+            const text = document.getElementById('comment-text').value;
+
+            if (name && text) {
+                const comment = { name, text };
+                const comments = JSON.parse(localStorage.getItem('comments')) || [];
+                comments.push(comment);
+                localStorage.setItem('comments', JSON.stringify(comments));
+
+                addCommentToList(name, text);
+
+                // 清空輸入框
+                document.getElementById('comment-name').value = '';
+                document.getElementById('comment-text').value = '';
+            } else {
+                alert('請填寫所有欄位');
+            }
+        }
+
+        function addCommentToList(name, text) {
+            const commentList = document.getElementById('comment-list');
+            const newComment = document.createElement('div');
+            newComment.classList.add('comment');
+            newComment.innerHTML = `<p><strong>${name}</strong></p><p>${text}</p>`;
+            commentList.appendChild(newComment);
+        }
     </script>
-    <noscript>請啟用 JavaScript 以查看 <a href="https://disqus.com/?ref_noscript">由 Disqus 提供的評論。</a></noscript>
 </body>
 </html>
