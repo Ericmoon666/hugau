@@ -193,8 +193,24 @@
                 .then(data => {
                     document.getElementById('article').innerHTML = data;
                     showSection('article');
+                    // 初始化 Disqus
+                    loadDisqus(articleUrl);
                 })
                 .catch(error => console.error('Error loading article:', error));
+        }
+
+        function loadDisqus(articleUrl) {
+            var disqus_config = function () {
+                this.page.url = window.location.origin + '/' + articleUrl;  // 頁面 URL
+                this.page.identifier = articleUrl; // 頁面標識符
+            };
+
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://disqus_r7ajAA1cCQ.disqus.com/embed.js';  // 替換為你的 Disqus 短名稱
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
         }
     </script>
 </body>
