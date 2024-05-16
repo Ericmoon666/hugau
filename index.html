@@ -179,11 +179,9 @@
 
     <script>
         function showSection(sectionId) {
-            // 隱藏所有內容部分
             document.querySelectorAll('.content').forEach(function(section) {
                 section.classList.add('hidden');
             });
-            // 顯示所選部分
             document.getElementById(sectionId).classList.remove('hidden');
         }
 
